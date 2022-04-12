@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/settingBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundedcorner"
+            android:text="S"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/jungleGreen"
+
+            />
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="5"
+            android:paddingLeft="25dp"
+            android:gravity="left"
+            android:text="VIRIDIS"
+            android:textColor="@color/pistachio"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed-medium"
+
+            />
+
+    </LinearLayout>
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/plantName"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_marginBottom="25dp"-->
+    <!--        android:gravity="center_horizontal"-->
+    <!--        android:text="My plant"-->
+    <!--        android:textColor="@color/jungleGreen"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold" />-->
+
+    <ImageView
+        android:id="@+id/plantMood"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_gravity="center"
+        android:background="@drawable/happy"
+        android:contentDescription="plant mood" />
+
+    <TextView
+        android:id="@+id/plantMoodText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="MOOD"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/roundedcorner"
+        android:backgroundTint="@color/maizeCrayola"
+        />
+
+    <LinearLayout
+        android:id="@+id/llOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <Button
+
+            android:id="@+id/humidityButton"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            app:backgroundTint="@color/jungleGreen"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="HUMID"
+
+            />
+
+        <Button
+            android:id="@+id/uviButton"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            app:backgroundTint = "@color/pistachio"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="UVI"
+            />
+
+        <Button
+            android:id="@+id/temperatureButton"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            app:backgroundTint = "@color/SteelTeal"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="TEMP"
+            />
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/mangoTango"
+
+        app:cardCornerRadius="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Tips:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</LinearLayout>
