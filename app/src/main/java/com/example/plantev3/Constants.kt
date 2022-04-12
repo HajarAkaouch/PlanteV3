@@ -45,7 +45,7 @@ object Constants {
         return stateList
     }
 
-    fun getUviStateConst():ArrayList<String>{
+    fun getUviStateConst():ArrayList<String> {
         val stateList = ArrayList<String>()
 
         stateList.add("J'ai besoin de soleil")
@@ -55,4 +55,12 @@ object Constants {
         return stateList
     }
 
+    fun getFunFact():ArrayList<String>{
+        val factList = ArrayList<String>()
+        factList.add("Les plantes sont sensibles au changement. Ils sont lents à s'adapter à de nouveaux environnements, donc s'ils vont bien, laissez les à leur place!")
+        factList.add("Lorsque les racines d'une plante poussent hors de son trou de drainage, ou qu'elle déborde sur le dessus, il est temps de la planter dans un plus gros pot.")
+        factList.add("La poussière s'accumule sur les feuilles, alors lavez-les avec une douce douche d'eau à température ambiante ou époussetez-les avec une brosse si les plantes ont des feuilles velues")
+        factList.add("Coupez les fleurs fanées de vos plantes pour encourager plus de fleurs et aider à prévenir les problèmes de maladies. Pendant que vous y êtes, assurez-vous d'enlever les feuilles jaunes, brunes ou fanées.")
+        return factList
+    }
 }

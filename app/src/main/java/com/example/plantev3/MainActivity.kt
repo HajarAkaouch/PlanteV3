@@ -25,8 +25,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 import java.time.ZoneId
 
+var myPlante = Plante()
 
-fun changeMood(uvi: Float, temp: Float, moist: Float, myPlant: Plante) {
+fun changeMood(uvi: String, temp: String, moist: String, myPlant: Plante) {
+
+    val uviF = uvi.toFloat()
+    val tempF = temp.toFloat()
+    val moistF = moist.toFloat()
 
     val currentTime = LocalDateTime.now(ZoneId.systemDefault())
     val night = LocalDateTime.of(
@@ -39,11 +44,11 @@ fun changeMood(uvi: Float, temp: Float, moist: Float, myPlant: Plante) {
     val day = LocalDateTime.of(currentTime.year, currentTime.monthValue, currentTime.dayOfMonth, 8, 0)
 
     if (currentTime.isBefore(night) && currentTime.isAfter(day)) {
-        if (uvi >= myPlant.getUviRange()[0] && uvi <= myPlant.getUviRange()[1]) {
+        if (uviF >= myPlant.getUviRange()[0] && uviF <= myPlant.getUviRange()[1]) {
             myPlant.setUviMood(getUviStateConst()[1])
-        } else if (uvi <= myPlant.getUviRange()[0]) {
+        } else if (uviF <= myPlant.getUviRange()[0]) {
             myPlant.setUviMood(getUviStateConst()[0])
-        } else if (uvi >= myPlant.getUviRange()[1]) {
+        } else if (uviF >= myPlant.getUviRange()[1]) {
             myPlant.setUviMood(getUviStateConst()[2])
         }
     } else {
@@ -51,20 +56,20 @@ fun changeMood(uvi: Float, temp: Float, moist: Float, myPlant: Plante) {
     }
 
 
-    if (temp >= myPlant.getTempRange()[0] && temp <= myPlant.getTempRange()[1]) {
+    if (tempF >= myPlant.getTempRange()[0] && tempF <= myPlant.getTempRange()[1]) {
         myPlant.setTempMood(getTempStateConst()[1])
-    } else if (temp <= myPlant.getTempRange()[0]) {
+    } else if (tempF <= myPlant.getTempRange()[0]) {
         myPlant.setTempMood(getTempStateConst()[0])
-    } else if (temp >= myPlant.getTempRange()[1]) {
+    } else if (tempF >= myPlant.getTempRange()[1]) {
         myPlant.setTempMood(getTempStateConst()[2])
     }
 
 
-    if (moist >= myPlant.getMoistRange()[0] && moist <= myPlant.getMoistRange()[1]) {
+    if (moistF >= myPlant.getMoistRange()[0] && moistF <= myPlant.getMoistRange()[1]) {
         myPlant.setMoistMood(getMoistStateConst()[1])
-    } else if (moist <= myPlant.getMoistRange()[0]) {
+    } else if (moistF <= myPlant.getMoistRange()[0]) {
         myPlant.setMoistMood(getMoistStateConst()[0])
-    } else if (moist >= myPlant.getMoistRange()[1]) {
+    } else if (moistF >= myPlant.getMoistRange()[1]) {
         myPlant.setMoistMood(getMoistStateConst()[2])
     }
 
@@ -79,12 +84,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnHumid:Button = findViewById(R.id.humidityButton)
-        val btnTemp:Button = findViewById(R.id.temperatureButton)
-        val btnUvi:Button = findViewById(R.id.uviButton)
+        val settingBtn: Button = findViewById(R.id.settingBtn)
 
         moodImage = findViewById(R.id.plantMood)
         moodText = findViewById(R.id.plantMoodText)
+        val humidText: TextView = findViewById(R.id.humidityText)
+        val uviText: TextView  = findViewById(R.id.uviText)
+        val tempText: TextView  = findViewById(R.id.temperatureText)
+
 
 
         // Write data to app
@@ -93,14 +100,21 @@ class MainActivity : AppCompatActivity() {
         val humid = capteur.child("Moist")
         val uvi = capteur.child("Uvi")
 
+        val uviString = uviText.toString()
+        val tempString = tempText.text.toString()
+        val humidString = humidText.text.toString()
+
+
+
         humid.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 Log.d("Humid Error: ", error.message)
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
-                btnHumid.text = snapshot.value.toString()
-                Log.d("Humid: ",snapshot.value.toString())
+                humidText.text = snapshot.value.toString()
+                Log.d("Humid: ", snapshot.value.toString())
             }
         })
 
@@ -109,9 +123,11 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Temp Error: ", error.message)
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
-                btnTemp.text = snapshot.value.toString()
-                Log.d("Temp: ",snapshot.value.toString())
+                tempText.text = snapshot.value.toString()
+                Log.d("Temp: ", snapshot.value.toString())
+
             }
 
         })
@@ -121,60 +137,22 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Temp Error: ", error.message)
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
-                btnUvi.text = snapshot.value.toString()
-                Log.d("Temp: ",snapshot.value.toString())
+                uviText.text = snapshot.value.toString()
+                Log.d("Temp: ", snapshot.value.toString())
+
             }
 
         })
 
 
-    }
-
-    fun changeMood(uvi: Float, temp: Float, moist: Float, myPlant: Plante) {
-
-        val currentTime = LocalDateTime.now(ZoneId.systemDefault())
-        val night = LocalDateTime.of(
-            currentTime.year,
-            currentTime.monthValue,
-            currentTime.dayOfMonth,
-            20,
-            0
-        )
-        val day =
-            LocalDateTime.of(currentTime.year, currentTime.monthValue, currentTime.dayOfMonth, 8, 0)
-
-        if (currentTime.isBefore(night) && currentTime.isAfter(day)) {
-            if (uvi >= myPlant.getUviRange()[0] && uvi <= myPlant.getUviRange()[1]) {
-                myPlant.setUviMood(getUviStateConst()[1])
-            } else if (uvi <= myPlant.getUviRange()[0]) {
-                myPlant.setUviMood(getUviStateConst()[0])
-            } else if (uvi >= myPlant.getUviRange()[1]) {
-                myPlant.setUviMood(getUviStateConst()[2])
-            }
-        } else {
-            myPlant.setUviMood(getUviStateConst()[1])
+        settingBtn.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+            // finish() if I want to close the mainActivity
         }
 
-
-        if (temp >= myPlant.getTempRange()[0] && temp <= myPlant.getTempRange()[1]) {
-            myPlant.setTempMood(getTempStateConst()[1])
-        } else if (temp <= myPlant.getTempRange()[0]) {
-            myPlant.setTempMood(getTempStateConst()[0])
-        } else if (temp >= myPlant.getTempRange()[1]) {
-            myPlant.setTempMood(getTempStateConst()[2])
-        }
-
-
-        if (moist >= myPlant.getMoistRange()[0] && moist <= myPlant.getMoistRange()[1]) {
-            myPlant.setMoistMood(getMoistStateConst()[1])
-        } else if (moist <= myPlant.getMoistRange()[0]) {
-            myPlant.setMoistMood(getMoistStateConst()[0])
-        } else if (moist >= myPlant.getMoistRange()[1]) {
-            myPlant.setMoistMood(getMoistStateConst()[2])
-        }
-
-        myPlant.setMood()
     }
 }
 

@@ -17,18 +17,14 @@
 
         <Button
             android:id="@+id/settingBtn"
-            android:layout_width="0dp"
+            android:layout_width="15dp"
             android:layout_height="50dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:background="@drawable/roundedcorner"
-            android:text="S"
-            android:textColor="@android:color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/jungleGreen"
+            android:background="@drawable/settings_gear"
+            app:backgroundTint="@color/mangoTango"
 
             />
 
@@ -36,55 +32,116 @@
             android:id="@+id/appName"
             android:layout_width="40dp"
             android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="5"
-            android:paddingLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="4"
+            android:fontFamily="sans-serif-condensed-medium"
             android:gravity="left"
+            android:paddingLeft="25dp"
             android:text="VIRIDIS"
             android:textColor="@color/pistachio"
             android:textSize="30sp"
             android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/plantName"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
             android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="left"
+            android:paddingLeft="25dp"
+            android:text="Aloe"
+            android:textColor="@color/celadonBlue"
+            android:textSize="20sp"
+            android:textStyle="bold"
 
             />
 
     </LinearLayout>
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/plantName"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="10dp"-->
-    <!--        android:layout_marginBottom="25dp"-->
-    <!--        android:gravity="center_horizontal"-->
-    <!--        android:text="My plant"-->
-    <!--        android:textColor="@color/jungleGreen"-->
-    <!--        android:textSize="25sp"-->
-    <!--        android:textStyle="bold" />-->
-
     <ImageView
         android:id="@+id/plantMood"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
         android:layout_gravity="center"
         android:background="@drawable/happy"
         android:contentDescription="plant mood" />
 
-    <TextView
+    <Button
         android:id="@+id/plantMoodText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:gravity="center"
-        android:text="MOOD"
+        android:text="Je vais super bien!"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:background="@drawable/roundedcorner"
-        android:backgroundTint="@color/maizeCrayola"
+        app:backgroundTint="@color/pistachio"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:backgroundTint = "@color/celadonBlue"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:text="Humidité"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:backgroundTint = "@color/maizeCrayola"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:text="UVI"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:backgroundTint = "@color/orangeRed"
+            android:background="@drawable/roundedcorner"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:text="Température"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llOne"
@@ -94,50 +151,50 @@
         android:layout_marginEnd="10dp"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
 
-            android:id="@+id/humidityButton"
+            android:id="@+id/humidityText"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            app:backgroundTint="@color/jungleGreen"
-            android:background="@drawable/roundedcorner"
+            android:gravity="center"
+            android:background="@drawable/borders"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/celadonBlue"
             android:text="HUMID"
 
             />
 
-        <Button
-            android:id="@+id/uviButton"
+        <TextView
+            android:id="@+id/uviText"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            app:backgroundTint = "@color/pistachio"
-            android:background="@drawable/roundedcorner"
+            android:gravity="center"
+            android:background="@drawable/borders"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/maizeCrayola"
             android:text="UVI"
             />
 
-        <Button
-            android:id="@+id/temperatureButton"
+        <TextView
+            android:id="@+id/temperatureText"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="2dp"
             android:layout_weight="1"
-            app:backgroundTint = "@color/SteelTeal"
-            android:background="@drawable/roundedcorner"
+            android:gravity="center"
+            android:background="@drawable/borders"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/orangeRed"
             android:text="TEMP"
             />
 
@@ -163,11 +220,23 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:gravity="left"
-                android:text="Tips:"
+                android:text="Astuces:"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/astuce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Les plantes sont sensibles au changement. Ils sont lents à s'adapter à de nouveaux environnements, donc s'ils vont bien, laissez les à leur place!"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:justificationMode="inter_word"
+                 />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

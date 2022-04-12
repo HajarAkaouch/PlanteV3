@@ -5,7 +5,7 @@ import com.example.plantev3.Constants.getMoodConst
 import com.example.plantev3.Constants.getTempStateConst
 import com.example.plantev3.Constants.getUviStateConst
 
-class Plante constructor(name: String, moistLevel: String, tempLevel: String, uviLevel: String,arrose: String) {
+class Plante constructor(name: String = "", moistLevel: String = "", tempLevel: String = "", uviLevel: String = "",arrose: String = "") {
 
     var name: String? = null
     var moistLevel: String? = null
