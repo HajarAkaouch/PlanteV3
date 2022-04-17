@@ -1,6 +1,10 @@
 package com.example.plantev3
 
 object Constants {
+
+    const val PLANT_NAME: String = ""
+
+
     fun getMoodConst():ArrayList<Mood>{
         val moodList = ArrayList<Mood>()
         val moodHappy = Mood(

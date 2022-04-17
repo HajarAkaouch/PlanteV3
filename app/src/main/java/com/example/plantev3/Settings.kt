@@ -79,9 +79,7 @@ class Settings : AppCompatActivity() {
             if (nameSetText.text.toString().isEmpty() || tempSetText.text.toString().isEmpty()){
                 Toast.makeText(this,"Champ obligatoire manquant", Toast.LENGTH_SHORT).show()
             }else{
-                myPlante = Plante(nameSetText.text.toString(),humid,tempSetText.text.toString(),uvi)
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
+
 
             }
         }
