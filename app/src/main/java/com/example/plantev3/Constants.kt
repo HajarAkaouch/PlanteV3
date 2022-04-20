@@ -1,26 +1,24 @@
 package com.example.plantev3
 
 object Constants {
-
-    const val PLANT_NAME: String = ""
-
+    var maPlante = Plante()
 
     fun getMoodConst():ArrayList<Mood>{
         val moodList = ArrayList<Mood>()
         val moodHappy = Mood(
-            1,
+            "happy",
             R.drawable.happy,
             "Je suis heureuse!"
         )
         moodList.add(moodHappy)
         val moodMedium = Mood(
-            2,
+            "medium",
             R.drawable.medium,
             "Je me sens pas trop bien..."
         )
         moodList.add(moodMedium)
         val moodSad = Mood(
-            3,
+            "sad",
             R.drawable.sad,
             "Je suis mourru..."
         )

@@ -63,7 +63,7 @@ class Plante constructor(name: String = "Ma plante", moistLevel: String = "Humid
 
         if (min != null && max != null) {
             tempR.add(0, min)
-            tempR.add(0, max)
+            tempR.add(1, max)
         }
 
         return tempR
@@ -89,7 +89,7 @@ class Plante constructor(name: String = "Ma plante", moistLevel: String = "Humid
 
         if(uviLevel == "Peu importe"){
             uviR.add(0, 0.0F)
-            uviR.add(0, 12.0F)
+            uviR.add(1, 12.0F)
         }
 
         return uviR
@@ -105,36 +105,7 @@ class Plante constructor(name: String = "Ma plante", moistLevel: String = "Humid
         uviState = state
     }
 
-    private fun setMood():Mood{
-
-        val good:Boolean = tempState == getTempStateConst()[1] && moistState == getMoistStateConst()[1] && uviState == getUviStateConst()[1]
-
-        val medium:Boolean = (tempState == getTempStateConst()[1] && moistState == getMoistStateConst()[1] && (uviState == getUviStateConst()[0] || uviState == getUviStateConst()[2])) ||
-                (tempState == getTempStateConst()[1] && (moistState == getMoistStateConst()[0] || moistState == getMoistStateConst()[2]) && uviState == getUviStateConst()[1]) ||
-                ((tempState == getTempStateConst()[0] || tempState == getTempStateConst()[2]) && moistState == getMoistStateConst()[1] && uviState == getUviStateConst()[1])
-
-        val bad:Boolean = (tempState == getTempStateConst()[1] && (moistState == getMoistStateConst()[0] || moistState == getMoistStateConst()[2]) && (uviState == getUviStateConst()[0] || uviState == getUviStateConst()[2]))||
-                ((tempState == getTempStateConst()[0] || tempState == getTempStateConst()[2]) && moistState == getMoistStateConst()[1] && (uviState == getUviStateConst()[0] || uviState == getUviStateConst()[2]))||
-                ((tempState == getTempStateConst()[0] || tempState == getTempStateConst()[2]) && (moistState == getMoistStateConst()[0] || moistState == getMoistStateConst()[2]) && uviState == getUviStateConst()[1])
-
-        if(good){
-            mood = getMoodConst()[0]
-        }
-        if(medium){
-            mood = getMoodConst()[1]
-        }
-        if(bad){
-            mood = getMoodConst()[2]
-        }
-
-        return mood
-    }
-
-    fun changeMood(uvi: String, temp: String, moist: String, myPlant: Plante): Mood {
-
-        val uviF = uvi.toFloat()
-        val tempF = temp.toFloat()
-        val moistF = moist.toFloat()
+    fun getMood(uvi: Float, temp: Float, moist: Float): Mood {
 
         val currentTime = LocalDateTime.now(ZoneId.systemDefault())
         val night = LocalDateTime.of(
@@ -147,33 +118,33 @@ class Plante constructor(name: String = "Ma plante", moistLevel: String = "Humid
         val day = LocalDateTime.of(currentTime.year, currentTime.monthValue, currentTime.dayOfMonth, 8, 0)
 
         if (currentTime.isBefore(night) && currentTime.isAfter(day)) {
-            if (uviF >= myPlant.getUviRange()[0] && uviF <= myPlant.getUviRange()[1]) {
-                myPlant.setUviMood(getUviStateConst()[1])
-            } else if (uviF <= myPlant.getUviRange()[0]) {
-                myPlant.setUviMood(getUviStateConst()[0])
-            } else if (uviF >= myPlant.getUviRange()[1]) {
-                myPlant.setUviMood(getUviStateConst()[2])
+            if (uvi >= getUviRange()[0] && uvi <= getUviRange()[1]) {
+                setUviMood(getUviStateConst()[1])
+            } else if (uvi <= getUviRange()[0]) {
+                setUviMood(getUviStateConst()[0])
+            } else if (uvi >= getUviRange()[1]) {
+                setUviMood(getUviStateConst()[2])
             }
         } else {
-            myPlant.setUviMood(getUviStateConst()[1])
+            setUviMood(getUviStateConst()[1])
         }
 
 
-        if (tempF >= myPlant.getTempRange()[0] && tempF <= myPlant.getTempRange()[1]) {
-            myPlant.setTempMood(getTempStateConst()[1])
-        } else if (tempF <= myPlant.getTempRange()[0]) {
-            myPlant.setTempMood(getTempStateConst()[0])
-        } else if (tempF >= myPlant.getTempRange()[1]) {
-            myPlant.setTempMood(getTempStateConst()[2])
+        if (temp >= getTempRange()[0] && temp <= getTempRange()[1]) {
+            setTempMood(getTempStateConst()[1])
+        } else if (temp <= getTempRange()[0]) {
+            setTempMood(getTempStateConst()[0])
+        } else if (temp >= getTempRange()[1]) {
+            setTempMood(getTempStateConst()[2])
         }
 
 
-        if (moistF >= myPlant.getMoistRange()[0] && moistF <= myPlant.getMoistRange()[1]) {
-            myPlant.setMoistMood(getMoistStateConst()[1])
-        } else if (moistF <= myPlant.getMoistRange()[0]) {
-            myPlant.setMoistMood(getMoistStateConst()[0])
-        } else if (moistF >= myPlant.getMoistRange()[1]) {
-            myPlant.setMoistMood(getMoistStateConst()[2])
+        if (moist >= getMoistRange()[0] && moist <= getMoistRange()[1]) {
+            setMoistMood(getMoistStateConst()[1])
+        } else if (moist <= getMoistRange()[0]) {
+            setMoistMood(getMoistStateConst()[0])
+        } else if (moist >= getMoistRange()[1]) {
+            setMoistMood(getMoistStateConst()[2])
         }
 
         val good:Boolean = tempState == getTempStateConst()[1] && moistState == getMoistStateConst()[1] && uviState == getUviStateConst()[1]
@@ -186,14 +157,18 @@ class Plante constructor(name: String = "Ma plante", moistLevel: String = "Humid
                 ((tempState == getTempStateConst()[0] || tempState == getTempStateConst()[2]) && moistState == getMoistStateConst()[1] && (uviState == getUviStateConst()[0] || uviState == getUviStateConst()[2]))||
                 ((tempState == getTempStateConst()[0] || tempState == getTempStateConst()[2]) && (moistState == getMoistStateConst()[0] || moistState == getMoistStateConst()[2]) && uviState == getUviStateConst()[1])
 
-        if(good){
-            mood = getMoodConst()[0]
-        }
-        if(medium){
-            mood = getMoodConst()[1]
-        }
-        if(bad){
-            mood = getMoodConst()[2]
+        val moodList: ArrayList<Mood> = getMoodConst()
+
+        when {
+            good -> {
+                mood = moodList[0]
+            }
+            medium -> {
+                mood = moodList[1]
+            }
+            bad -> {
+                mood = moodList[2]
+            }
         }
 
         return mood
